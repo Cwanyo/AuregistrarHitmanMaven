@@ -101,20 +101,18 @@ public class LoginServlet extends HttpServlet {
 
                 if (a == null) {
                     //who the hell?
-
+                    request.getRequestDispatcher("/Logout").forward(request, response);
                 } else {
                     //login as authority
                     session.setAttribute("authorityInfo", a);
                     //redirect
-                    String url = "/WEB-INF/view/authority/mainAuthorityTest.jsp";
-                    request.getRequestDispatcher(url).forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/view/authority/mainAuthorityTest.jsp").forward(request, response);
                 }
             } else {
                 //login as student
                 session.setAttribute("studentInfo", s);
                 //redirect
-                String url = "/WEB-INF/view/student/mainStudentTest.jsp";
-                request.getRequestDispatcher(url).forward(request, response);
+                request.getRequestDispatcher("/WEB-INF/view/student/mainStudentTest.jsp").forward(request, response);
             }
 
         } catch (Exception e) {
