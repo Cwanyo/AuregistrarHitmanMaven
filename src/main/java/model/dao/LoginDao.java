@@ -5,16 +5,16 @@
  */
 package model.dao;
 
-import java.util.List;
+import model.pojo.Authority;
 import model.pojo.Student;
 
 /**
  *
  * @author C.wan_yo
  */
-public interface StudentDao {
+public interface LoginDao {
     
-    public void addStudent(Student student);
-    public List<Student> showAllStudents();
+    public Student loginStudent(String email);
+    public Authority loginAuthority(String email);
     
 }

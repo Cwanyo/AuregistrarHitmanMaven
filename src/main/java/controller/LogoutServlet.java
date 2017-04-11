@@ -7,21 +7,17 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.daoImpl.StudentDaoImpl;
-import model.pojo.Student;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author C.wan_yo
  */
-public class StudentController extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -34,19 +30,13 @@ public class StudentController extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet StudentController</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet StudentController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+
+        HttpSession session = request.getSession(true);
+        session = request.getSession();
+        session.invalidate();
+
+        String url = "/WEB-INF/view/logout.jsp";
+        request.getRequestDispatcher(url).forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,7 +51,7 @@ public class StudentController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -75,18 +65,7 @@ public class StudentController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        
-        if(request.getParameter("showStudents")!=null){
-            List<Student> studentList = new ArrayList();
-            studentList = new StudentDaoImpl().showAllStudents();
-            request.setAttribute("studentList", studentList);
-            
-            System.out.println(studentList.get(0).getFirstName());
-            
-            RequestDispatcher rd = request.getRequestDispatcher("ShowStudents.jsp");
-            rd.forward(request, response);
-        }
+        processRequest(request, response);
     }
 
     /**

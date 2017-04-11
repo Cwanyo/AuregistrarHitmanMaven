@@ -10,17 +10,18 @@ import function.IdTokenVerifierAndParser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.daoImpl.LoginDaoImpl;
+import model.pojo.Authority;
+import model.pojo.Student;
 
 /**
  *
  * @author C.wan_yo
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
 
     /**
@@ -40,7 +41,7 @@ public class LoginServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");            
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
@@ -61,7 +62,8 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.sendRedirect("index.jsp");
     }
 
     /**
@@ -75,28 +77,47 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-        
+        //processRequest(request, response);
+
         response.setContentType("text/html");
 
         try {
-
             String idToken = request.getParameter("id_token");
             GoogleIdToken.Payload payLoad = IdTokenVerifierAndParser.getPayload(idToken);
-            String name = (String) payLoad.get("name");
+
             String email = payLoad.getEmail();
             String pictureUrl = (String) payLoad.get("picture");
-            System.out.println("User name: " + name);
-            System.out.println("User email: " + email);
 
+            //set session
             HttpSession session = request.getSession(true);
-            session.setAttribute("userName", name);
-            session.setAttribute("userEmail", email);
-            session.setAttribute("userPicUrl", pictureUrl);
-            request.getServletContext().getRequestDispatcher("/welcome-page.jsp").forward(request, response);
-            
+            session.setAttribute("userPicture", pictureUrl);
+
+            //check as student
+            Student s = new LoginDaoImpl().loginStudent(email);
+
+            if (s == null) {
+                //check as authority
+                Authority a = new LoginDaoImpl().loginAuthority(email);
+
+                if (a == null) {
+                    //who the hell?
+
+                } else {
+                    //login as authority
+                    session.setAttribute("authorityInfo", a);
+                    //redirect
+                    String url = "/WEB-INF/view/authority/mainAuthorityTest.jsp";
+                    request.getRequestDispatcher(url).forward(request, response);
+                }
+            } else {
+                //login as student
+                session.setAttribute("studentInfo", s);
+                //redirect
+                String url = "/WEB-INF/view/student/mainStudentTest.jsp";
+                request.getRequestDispatcher(url).forward(request, response);
+            }
+
         } catch (Exception e) {
-            throw new RuntimeException(e);
         }
     }
 
