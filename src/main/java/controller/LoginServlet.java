@@ -101,7 +101,9 @@ public class LoginServlet extends HttpServlet {
 
                 if (a == null) {
                     //who the hell?
-                    request.getRequestDispatcher("/Logout").forward(request, response);
+                    //redirect
+                    response.sendRedirect("Logout");
+                    //request.getRequestDispatcher("/Logout").forward(request, response);
                 } else {
                     //login as authority
                     session.setAttribute("authorityInfo", a);
