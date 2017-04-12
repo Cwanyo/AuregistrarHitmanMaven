@@ -106,13 +106,15 @@ public class LoginServlet extends HttpServlet {
                     //login as authority
                     session.setAttribute("authorityInfo", a);
                     //redirect
-                    request.getRequestDispatcher("/WEB-INF/view/authority/mainAuthorityTest.jsp").forward(request, response);
+                    response.sendRedirect("Authority");
+                    //request.getRequestDispatcher("/WEB-INF/view/authority/mainAuthorityTest.jsp").forward(request, response);
                 }
             } else {
                 //login as student
                 session.setAttribute("studentInfo", s);
                 //redirect
-                request.getRequestDispatcher("/WEB-INF/view/student/mainStudentTest.jsp").forward(request, response);
+                response.sendRedirect("Student");
+                //request.getRequestDispatcher("/WEB-INF/view/student/mainStudentTest.jsp").forward(request, response);
             }
 
         } catch (Exception e) {

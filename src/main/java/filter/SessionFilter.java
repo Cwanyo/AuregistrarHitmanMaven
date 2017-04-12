@@ -112,7 +112,7 @@ public class SessionFilter implements Filter {
             //check if session exits or not
             HttpServletRequest req = (HttpServletRequest) request;
             HttpSession session = req.getSession(true);
-            if(session.getAttribute("userPicture")==null){
+            if(session.getAttribute("authorityInfo")==null && session.getAttribute("studentInfo")==null){
                 req.getRequestDispatcher("/index.jsp").forward(request, response);
             }
             chain.doFilter(request, response);
