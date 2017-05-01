@@ -6,6 +6,7 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -14,9 +15,11 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author C.wan_yo
+ * @author pncht
  */
-public class StudentServlet extends HttpServlet {
+public class StudentDetailServlet extends HttpServlet {
+
+    public String userPath;
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,13 +32,21 @@ public class StudentServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //redirect to page
+        userPath = request.getServletPath().toLowerCase();
         HttpSession session = request.getSession(true);
-        if (session.getAttribute("studentInfo") == null) {
-            request.getRequestDispatcher("/index.jsp").forward(request, response);
-        } else {
+
+        if (userPath.equals("/student/index")) {
+            session.setAttribute("petitionform", null);
+            System.out.println("redirected-------->");
+            System.out.println(userPath);
+            request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
+        } else if (userPath.equals("/student/petition")) {
+            session.setAttribute("petitionform", "123");
+            System.out.println("redirected-------->");
+            System.out.println(userPath);
             request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
         }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
