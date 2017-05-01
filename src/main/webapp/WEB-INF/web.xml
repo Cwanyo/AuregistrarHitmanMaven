@@ -28,6 +28,10 @@
         <servlet-name>StudentDetailServlet</servlet-name>
         <servlet-class>controller.StudentDetailServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AuthorityDetailServlet</servlet-name>
+        <servlet-class>controller.AuthorityDetailServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -54,6 +58,10 @@
         <url-pattern>/Student/index</url-pattern>
         <url-pattern>/student/petition</url-pattern>
         <url-pattern>/Student/petition</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthorityDetailServlet</servlet-name>
+        <url-pattern>/Authority/petitionlist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
