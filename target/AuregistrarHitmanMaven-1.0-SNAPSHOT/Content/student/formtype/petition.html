@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+
+<form id="form" action="submit.jsp" method="post">
+     <!--Admission NO : <input type="number" name="admission_number" value=""><br>
+     First Name : <input type="text" name="firstname" value=""><br>
+     Last Name : <input type="text" name="lastname" value=""><br>
+     Faculty : <input type="text" name="faculty" value=""><br>
+     Major : <input type="text" name="major" value=""><br>
+     Email : <input type="email" name="email" value=""><br>
+     Tel : <input type="number" name="tel" value="">-->
+
+     <h4>Request</h4>
+     <input type="radio" name="requestoption" value="1"> CHANGE FACULTY/MAJOR
+     <input type="radio" name="requestoption" value="2"> CHANGE ADDRESS
+     <input type="radio" name="requestoption" value="3"> OTHER <br>
+     <textarea name="requestmessage" rows="8" cols="80"></textarea>
+     <h4>Reason</h4>
+     <textarea name="requestreason" rows="8" cols="80"></textarea>
+     
+     <br>
+     <input type="submit" value="Submit" class="btn btn-outline btn-primary btn-lg btn-block">
+</form>
