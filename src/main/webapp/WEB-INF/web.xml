@@ -50,8 +50,10 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StudentDetailServlet</servlet-name>
-        <url-pattern>/Student/*</url-pattern>
-        <url-pattern>/student/*</url-pattern>
+        <url-pattern>/student/index</url-pattern>
+        <url-pattern>/Student/index</url-pattern>
+        <url-pattern>/student/petition</url-pattern>
+        <url-pattern>/Student/petition</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

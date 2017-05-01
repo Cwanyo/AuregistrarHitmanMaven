@@ -34,7 +34,7 @@ public class StudentServlet extends HttpServlet {
         if (session.getAttribute("studentInfo") == null) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("/WEB-INF/view/student/mainStudentTest.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
         }
     }
 
