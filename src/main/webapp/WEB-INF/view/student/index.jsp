@@ -9,7 +9,7 @@
 <link href="${pageContext.request.contextPath}/Content/student/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
 <!-- Custom CSS -->
-<link href="${pageContext.request.contextPath}/Content/student/dist/css/sb-admin-2.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/Content/student/css/sb-admin-2.css" rel="stylesheet">
 
 <!-- Morris Charts CSS -->
 <link href="${pageContext.request.contextPath}/Content/student/vendor/morrisjs/morris.css" rel="stylesheet">
@@ -353,7 +353,7 @@
 <script src="${pageContext.request.contextPath}/Content/student/vendor/morrisjs/morris.min.js"></script>
 
 <!-- Custom Theme JavaScript -->
-<script src="${pageContext.request.contextPath}/Content/student/dist/js/sb-admin-2.js"></script>
+<script src="${pageContext.request.contextPath}/Content/student/js/sb-admin-2.js"></script>
 
 
 
