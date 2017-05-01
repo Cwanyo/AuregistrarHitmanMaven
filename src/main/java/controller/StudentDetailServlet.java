@@ -7,11 +7,14 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.daoImpl.StudentDetailImpl;
+import model.pojo.FormType;
 
 /**
  *
@@ -41,11 +44,13 @@ public class StudentDetailServlet extends HttpServlet {
             System.out.println(userPath);
             request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
         } else if (userPath.equals("/student/petition")) {
-            session.setAttribute("petitionform", "123");
+            List<FormType> f = new StudentDetailImpl().getListForm();
+            
+            session.setAttribute("petitionform", f);
             System.out.println("redirected-------->");
             System.out.println(userPath);
             request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
-        }
+        } 
 
     }
 

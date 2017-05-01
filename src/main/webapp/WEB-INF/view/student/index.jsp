@@ -271,7 +271,7 @@
         <!-- /.navbar-static-side -->
     </nav>
 
-    <div id="page-wrapper">
+    <div id="page-wrapper" >
         <c:if test="${empty petitionform}">
 
             <div class="row">
@@ -306,25 +306,22 @@
                     <!-- /.panel-heading -->
                     <div class="panel-body">
                         <!-- Nav tabs -->
+
                         <ul class="nav nav-pills">
-                            <li class="active"><a href="#home-pills" data-toggle="tab">Form 1</a>
-                            </li>
-                            <li><a href="#profile-pills" data-toggle="tab">Form 2</a>
-                            </li>
+                            <c:forEach var="p" items="${petitionform}">
+                                <li><a href="#${p.getName()}-pills" data-toggle="tab" onclick="load_form('#${p.getName()}-pills', '${p.getFormPath()}')">${p.getName()}</a>
+                                </li>
+                            </c:forEach>
                         </ul>
 
                         <!-- Tab panes -->
                         <div class="tab-content">
-                            <div class="tab-pane fade in active" id="home-pills">
-                                <h4>Home Tab</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <button type="button" class="btn btn-outline btn-primary btn-lg btn-block">Submit</button>
-                            </div>
-                            <div class="tab-pane fade" id="profile-pills">
-                                <h4>Profile Tab</h4>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                                <button type="button" class="btn btn-outline btn-primary btn-lg btn-block">Submit</button>
-                            </div>
+                            <c:forEach var="p" items="${petitionform}">
+                                <div class="tab-pane fade" id="${p.getName()}-pills">
+                                    <h4>${p.getName()}</h4>
+
+                                </div>
+                            </c:forEach>
                         </div>
                     </div>
                     <!-- /.panel-body -->
@@ -333,7 +330,6 @@
             </div>
         </c:if>
 
-
     </div>
     <!-- /.row -->
 </div>
@@ -341,7 +337,13 @@
 
 </div>
 <!-- /#wrapper -->
+<script>
 
+    function load_form(id, path) {
+        $(id).load("${pageContext.request.contextPath}/Content/student/formtype/"+path);
+    }
+    
+</script>
 
 <!-- Metis Menu Plugin JavaScript -->
 <script src="${pageContext.request.contextPath}/Content/student/vendor/metisMenu/metisMenu.min.js"></script>
