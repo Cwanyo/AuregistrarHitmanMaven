@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2017 8:17:45 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="model.pojo.PetitionForm" table="petition_form" catalog="heroku_a117bf4cb350f31" optimistic-lock="version">
+        <composite-id name="id" class="model.pojo.PetitionFormId">
+            <key-property name="studentRequestStudentId" type="int">
+                <column name="student_request_student_id" />
+            </key-property>
+            <key-property name="studentRequestFormTypeId" type="int">
+                <column name="student_request_form_type_id" />
+            </key-property>
+            <key-property name="studentRequestSubmitTime" type="timestamp">
+                <column name="student_request_submit_time" length="19" />
+            </key-property>
+        </composite-id>
+        <one-to-one name="studentRequest" class="model.pojo.StudentRequest" constrained="true"></one-to-one>
+        <property name="requestOption" type="int">
+            <column name="request_option" not-null="true" />
+        </property>
+        <property name="requestMessage" type="string">
+            <column name="request_message" length="1000" />
+        </property>
+        <property name="requestReason" type="string">
+            <column name="request_reason" length="1000" />
+        </property>
+        <property name="advisorSignature" type="string">
+            <column name="advisor_signature" length="100" />
+        </property>
+    </class>
+</hibernate-mapping>

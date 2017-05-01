@@ -1,0 +1,16 @@
+model\pojo\Student.class
+model\pojo\FormType.class
+model\daoImpl\LoginDaoImpl.class
+model\pojo\Authority.class
+model\dao\LoginDao.class
+model\pojo\StudentRequest.class
+function\IdTokenVerifierAndParser.class
+model\util\HibernateUtil.class
+model\pojo\StudentRequestId.class
+controller\LoginServlet.class
+model\pojo\Major.class
+model\pojo\PetitionForm.class
+model\pojo\PetitionFormId.class
+model\pojo\Faculty.class
+controller\LogoutServlet.class
+filter\SessionFilter.class
