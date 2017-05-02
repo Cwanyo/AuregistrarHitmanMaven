@@ -7,6 +7,7 @@ package model.daoImpl;
 
 import java.util.List;
 import model.dao.AuthorityDetailDao;
+import model.pojo.ChangeSectionForm;
 import model.pojo.FormType;
 import model.pojo.PetitionForm;
 import model.util.HibernateUtil;
@@ -37,12 +38,13 @@ public class AuthorityDetailImpl implements AuthorityDetailDao {
     }
 
     @Override
-    public List<PetitionForm> getPetitionFormRequest() {
+    public List<PetitionForm> getPetitionFormRequest(String status) {
         List<PetitionForm> p = null;
         
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("FROM PetitionForm");
+            Query query = session.createQuery("FROM PetitionForm P WHERE P.status = :st");
+            query.setParameter("st", status);
             
             p = (List<PetitionForm>) query.list();
             session.close();
@@ -50,6 +52,23 @@ public class AuthorityDetailImpl implements AuthorityDetailDao {
         }
         
         return p;
+    }
+
+    @Override
+    public List<ChangeSectionForm> getChangeSectionForm(String status) {
+        List<ChangeSectionForm> c = null;
+        
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            Query query = session.createQuery("FROM ChangeSectionForm C WHERE C.status = :st");
+            query.setParameter("st", status);
+            
+            c = (List<ChangeSectionForm>) query.list();
+            session.close();
+        } catch (HibernateException e) {
+        }
+        
+        return c;
     }
 
 }

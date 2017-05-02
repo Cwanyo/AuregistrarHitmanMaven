@@ -6,6 +6,7 @@
 package model.dao;
 
 import java.util.List;
+import model.pojo.ChangeSectionForm;
 import model.pojo.FormType;
 import model.pojo.PetitionForm;
 
@@ -19,12 +20,15 @@ public interface AuthorityDetailDao {
     public List<FormType> getListForm();
 
     /*
-    get list of student request according to status 
+    type of status
     w = wait 
     s = suspend
      */
+    //get petition form only
+    public List<PetitionForm> getPetitionFormRequest(String status);
     
-    public List<PetitionForm> getPetitionFormRequest();
+    //get change section form only
+    public List<ChangeSectionForm> getChangeSectionForm(String status);
 }
 //Stage
 //

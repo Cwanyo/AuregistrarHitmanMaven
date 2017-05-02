@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.daoImpl.AuthorityDetailImpl;
 import model.pojo.Authority;
+import model.pojo.ChangeSectionForm;
 import model.pojo.FormType;
 import model.pojo.Major;
 import model.pojo.PetitionForm;
@@ -43,16 +44,8 @@ public class TestServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //This use for TESTING ONLY
-        List<PetitionForm> p = null;
-
-        try {
-            Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("FROM PetitionForm");
-
-            p = query.list();
-            session.close();
-        } catch (HibernateException e) {
-        }
+        List<ChangeSectionForm> p = new AuthorityDetailImpl().getChangeSectionForm("s");
+        
         if (p == null) {
             System.out.println("NULKKKKK+");
         } else {
