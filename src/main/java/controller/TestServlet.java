@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import model.daoImpl.AuthorityDetailImpl;
 import model.pojo.Authority;
 import model.pojo.ChangeSectionForm;
+import model.pojo.ChangeSectionFormId;
 import model.pojo.FormType;
 import model.pojo.Major;
 import model.pojo.PetitionForm;

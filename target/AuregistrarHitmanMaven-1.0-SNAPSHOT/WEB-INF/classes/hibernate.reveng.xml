@@ -41,11 +41,11 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="heroku_1e588fc995ef1f5"/>
-  <table-filter match-name="student"/>
-  <table-filter match-name="authority"/>
-  <table-filter match-name="change_section_form"/>
-  <table-filter match-name="petition_form"/>
-  <table-filter match-name="form_type"/>
   <table-filter match-name="faculty"/>
+  <table-filter match-name="student"/>
+  <table-filter match-name="change_section_form"/>
   <table-filter match-name="major"/>
+  <table-filter match-name="petition_form"/>
+  <table-filter match-name="authority"/>
+  <table-filter match-name="form_type"/>
 </hibernate-reverse-engineering>
