@@ -18,6 +18,7 @@ public class Authority  implements java.io.Serializable {
      private String address;
      private String phoneNumber;
      private String role;
+     
 
     public Authority() {
     }
@@ -33,6 +34,8 @@ public class Authority  implements java.io.Serializable {
        this.phoneNumber = phoneNumber;
        this.role = role;
     }
+
+  
    
     public int getId() {
         return this.id;
