@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Apr 4, 2017 8:17:45 PM by Hibernate Tools 4.3.1
+// Generated May 3, 2017 1:11:18 AM by Hibernate Tools 4.3.1
 
 
 
@@ -18,7 +18,6 @@ public class Authority  implements java.io.Serializable {
      private String address;
      private String phoneNumber;
      private String role;
-     
 
     public Authority() {
     }
@@ -34,8 +33,6 @@ public class Authority  implements java.io.Serializable {
        this.phoneNumber = phoneNumber;
        this.role = role;
     }
-
-  
    
     public int getId() {
         return this.id;

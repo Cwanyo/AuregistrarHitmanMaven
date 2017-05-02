@@ -40,20 +40,20 @@ made subject to such option by the copyright holder.
 Contributor(s):
 -->
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.hbm2ddl.auto">update</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-        <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/heroku_a117bf4cb350f31</property>
-        <property name="hibernate.connection.username">b8ea3ceb4fe5e9</property>
-        <property name="hibernate.connection.password">e2fe9744</property>
-        <property name="hibernate.enable_lazy_load_no_trans">true</property>
-        <mapping resource="model/pojo/PetitionForm.hbm.xml"/>
-        <mapping resource="model/pojo/Authority.hbm.xml"/>
-        <mapping resource="model/pojo/StudentRequest.hbm.xml"/>
-        <mapping resource="model/pojo/FormType.hbm.xml"/>
-        <mapping resource="model/pojo/Student.hbm.xml"/>
-        <mapping resource="model/pojo/Faculty.hbm.xml"/>
-        <mapping resource="model/pojo/Major.hbm.xml"/>
-    </session-factory>
+  <session-factory>
+    <property name="hibernate.hbm2ddl.auto">update</property>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+    <property name="hibernate.connection.url">jdbc:mysql://us-cdbr-iron-east-03.cleardb.net:3306/heroku_1e588fc995ef1f5</property>
+    <property name="hibernate.connection.username">b0a57b32357e7a</property>
+    <property name="hibernate.connection.password">577adc85</property>
+    <property name="hibernate.enable_lazy_load_no_trans">true</property>
+    <mapping resource="model/pojo/PetitionForm.hbm.xml"/>
+    <mapping resource="model/pojo/Authority.hbm.xml"/>
+    <mapping resource="model/pojo/ChangeSectionForm.hbm.xml"/>
+    <mapping resource="model/pojo/FormType.hbm.xml"/>
+    <mapping resource="model/pojo/Student.hbm.xml"/>
+    <mapping resource="model/pojo/Faculty.hbm.xml"/>
+    <mapping resource="model/pojo/Major.hbm.xml"/>
+  </session-factory>
 </hibernate-configuration>

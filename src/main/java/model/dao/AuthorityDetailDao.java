@@ -8,7 +8,6 @@ package model.dao;
 import java.util.List;
 import model.pojo.FormType;
 import model.pojo.PetitionForm;
-import model.pojo.StudentRequest;
 
 /**
  *
@@ -24,7 +23,6 @@ public interface AuthorityDetailDao {
     w = wait 
     s = suspend
      */
-    public List<StudentRequest> getStudentRequests(String status);
     
     public List<PetitionForm> getPetitionFormRequest();
 }

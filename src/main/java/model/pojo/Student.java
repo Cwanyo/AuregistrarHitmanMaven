@@ -1,5 +1,5 @@
 package model.pojo;
-// Generated Apr 4, 2017 8:17:45 PM by Hibernate Tools 4.3.1
+// Generated May 3, 2017 1:11:18 AM by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -23,7 +23,8 @@ public class Student  implements java.io.Serializable {
      private String nationality;
      private int credit;
      private float gpa;
-     private Set studentRequests = new HashSet(0);
+     private Set petitionForms = new HashSet(0);
+     private Set changeSectionForms = new HashSet(0);
 
     public Student() {
     }
@@ -41,7 +42,7 @@ public class Student  implements java.io.Serializable {
         this.credit = credit;
         this.gpa = gpa;
     }
-    public Student(int id, Faculty faculty, Major major, String email, String firstName, String lastName, String address, String phoneNumber, String religion, String nationality, int credit, float gpa, Set studentRequests) {
+    public Student(int id, Faculty faculty, Major major, String email, String firstName, String lastName, String address, String phoneNumber, String religion, String nationality, int credit, float gpa, Set petitionForms, Set changeSectionForms) {
        this.id = id;
        this.faculty = faculty;
        this.major = major;
@@ -54,7 +55,8 @@ public class Student  implements java.io.Serializable {
        this.nationality = nationality;
        this.credit = credit;
        this.gpa = gpa;
-       this.studentRequests = studentRequests;
+       this.petitionForms = petitionForms;
+       this.changeSectionForms = changeSectionForms;
     }
    
     public int getId() {
@@ -141,12 +143,19 @@ public class Student  implements java.io.Serializable {
     public void setGpa(float gpa) {
         this.gpa = gpa;
     }
-    public Set getStudentRequests() {
-        return this.studentRequests;
+    public Set getPetitionForms() {
+        return this.petitionForms;
     }
     
-    public void setStudentRequests(Set studentRequests) {
-        this.studentRequests = studentRequests;
+    public void setPetitionForms(Set petitionForms) {
+        this.petitionForms = petitionForms;
+    }
+    public Set getChangeSectionForms() {
+        return this.changeSectionForms;
+    }
+    
+    public void setChangeSectionForms(Set changeSectionForms) {
+        this.changeSectionForms = changeSectionForms;
     }
 
 
