@@ -19,8 +19,6 @@ import model.pojo.Major;
 import model.pojo.PetitionForm;
 import model.pojo.PetitionFormId;
 import model.pojo.Student;
-import model.pojo.StudentRequest;
-import model.pojo.StudentRequestId;
 import model.util.HibernateUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -45,11 +43,11 @@ public class TestServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //This use for TESTING ONLY
-        List<StudentRequest> p = null;
+        List<PetitionForm> p = null;
 
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("FROM StudentRequest");
+            Query query = session.createQuery("FROM PetitionForm");
 
             p = query.list();
             session.close();
