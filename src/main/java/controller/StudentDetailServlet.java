@@ -7,6 +7,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.daoImpl.StudentDetailImpl;
+import model.pojo.ChangeSectionForm;
+import model.pojo.ChangeSectionFormId;
 import model.pojo.FormType;
+import model.pojo.PetitionForm;
+import model.pojo.PetitionFormId;
+import model.pojo.Student;
 
 /**
  *
@@ -41,31 +47,37 @@ public class StudentDetailServlet extends HttpServlet {
         userPath = request.getServletPath().toLowerCase();
         HttpSession session = request.getSession(true);
 
-        switch (userPath) {
-            // Back to index
-            case "/student/index":
-                session.setAttribute("petitionform", null);
-                System.out.println("redirected-------->");
-                System.out.println(userPath);
-                break;
-            // if petition list is requested
-            case "/student/petition":
-                List<FormType> f = new StudentDetailImpl().getListForm();
-                session.setAttribute("petitionform", f);
-                System.out.println("redirected-------->");
-                System.out.println(userPath);
-                break;
-            // if student submit petition form
-            case "/student/petition_form":
-                //StudentRequest s = new StudentRequest(new StudentRequestId(5715298,1,new Date()), formType, student, 0, userPath);
-                //int r = new StudentDetailImpl().submitPetitionForm(null);
-                //System.out.println("stage:"+r); 
-                break;
-            default:
-                break;
+        if (userPath.equals("/student/index")) {
+            session.setAttribute("petitionform", null);
+        } else if (userPath.equals("/student/petition")) {
+            List<FormType> f = new StudentDetailImpl().getListForm();
+            session.setAttribute("petitionform", f);
+        } else if (userPath.equals("/student/petition_form")) {
+            Student student = (Student) session.getAttribute("studentInfo");
+            int requestOption = Integer.parseInt(request.getParameter("requestoption"));
+            String requestMessage = request.getParameter("requestmessage");
+            String requestReason = request.getParameter("requestreason");
+            PetitionFormId pid = new PetitionFormId(new Timestamp(new Date().getTime()), student.getId());
+            
+            PetitionForm p = new PetitionForm(pid, student, 0, "w", requestOption, requestMessage, requestReason, "");
+            boolean status = new StudentDetailImpl().SubmitPetitionForm(p);
+            System.out.println("submit petition_form : " + status);
+        } else if (userPath.equals("/student/change_section_form")) {
+            Student student = (Student) session.getAttribute("studentInfo");
+            int requestOption = Integer.parseInt(request.getParameter("requestoption"));
+            String courseNumber = request.getParameter("coursenumber");
+            String sectionNumber = request.getParameter("sectionnumber");
+            String requestMessage = request.getParameter("requestmessage");
+            ChangeSectionFormId pid = new ChangeSectionFormId(new Timestamp(new Date().getTime()), student.getId());
+            
+            ChangeSectionForm c = new ChangeSectionForm(pid, student, 0, "w", requestOption, courseNumber, sectionNumber, requestMessage, "");
+            boolean status = new StudentDetailImpl().SubmitChangeSectionForm(c);
+            System.out.println("submit change_section_form : " + status);
         }
 
         try {
+            System.out.println("redirected-------->");
+            System.out.println(userPath);
             request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
         } catch (IOException | ServletException e) {
         }

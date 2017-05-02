@@ -7,12 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.daoImpl.AuthorityDetailImpl;
+import model.daoImpl.StudentDetailImpl;
 import model.pojo.Authority;
 import model.pojo.ChangeSectionForm;
 import model.pojo.ChangeSectionFormId;
@@ -45,13 +49,32 @@ public class TestServlet extends HttpServlet {
             throws ServletException, IOException {
 
         //This use for TESTING ONLY
-        List<ChangeSectionForm> p = new AuthorityDetailImpl().getChangeSectionForm("s");
+        HttpSession hs = request.getSession(true);
+        
+        List<ChangeSectionForm> p = new StudentDetailImpl().getChangeSectionForm("w", "5715298");
         
         if (p == null) {
             System.out.println("NULKKKKK+");
         } else {
             System.out.println(p.size());
         }
+        //PetitionFormId pid = new PetitionFormId(submitTime, 0);
+        //PetitionForm p = new PetitionForm(id, student, 0, status, 0)
+        /*Student s = (Student) hs.getAttribute("studentInfo");
+        Timestamp now = new Timestamp(new Date().getTime());
+        PetitionFormId pid = new PetitionFormId(now, 5715298);
+        PetitionForm p = new PetitionForm(pid, s, 1, "w", 1,"","","");
+        
+        try {
+            Session session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            
+            session.save(p);
+            session.getTransaction().commit();
+            session.close();
+        } catch (Exception e) {
+            System.out.println("ffffff");
+        }*/
 
     }
 
