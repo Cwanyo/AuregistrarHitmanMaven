@@ -32,8 +32,5 @@
         <property name="role" type="string">
             <column name="role" length="100" not-null="true" />
         </property>
-        <property name="date" type="string">
-            <column name="date" length="100" not-null="true" />
-        </property>
     </class>
 </hibernate-mapping>

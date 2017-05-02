@@ -56,7 +56,7 @@
 
             <!-- Petitions-->
 
-            <sql:query var="petitionlist" dataSource="jdbc/auregistrar">
+            <sql:query var="petitionlist" dataSource="jdbc/">
                 select name,submit_date,first_name,student_id,current_stage,max_stage
                 from (
                 SELECT student_id,first_name,request_form_id,formtype_id,current_stage,submit_date 
