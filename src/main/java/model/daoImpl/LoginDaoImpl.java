@@ -27,7 +27,7 @@ public class LoginDaoImpl implements LoginDao {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("FROM Student s WHERE s.email = :email");
-            query.setParameter("email", email);
+            query.setString("email", email);
             
             s = (Student) query.uniqueResult();
             
@@ -46,7 +46,7 @@ public class LoginDaoImpl implements LoginDao {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("FROM Authority a WHERE a.email = :email");
-            query.setParameter("email", email);
+            query.setString("email", email);
             
             a = (Authority) query.uniqueResult();
             

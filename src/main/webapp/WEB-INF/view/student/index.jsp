@@ -318,7 +318,6 @@
                         <div class="tab-content">
                             <c:forEach var="p" items="${petitionform}">
                                 <div class="tab-pane fade" id="${p.getName()}-pills">
-                                    <h4>${p.getName()}</h4>
 
                                 </div>
                             </c:forEach>

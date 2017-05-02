@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 
 <form id="form" action="petition_form" method="post">
-     <!--Admission NO : <input type="number" name="admission_number" value=""><br>
-     First Name : <input type="text" name="firstname" value=""><br>
-     Last Name : <input type="text" name="lastname" value=""><br>
-     Faculty : <input type="text" name="faculty" value=""><br>
-     Major : <input type="text" name="major" value=""><br>
-     Email : <input type="email" name="email" value=""><br>
-     Tel : <input type="number" name="tel" value="">-->
-
-     <h4>Request :-</h4>
-     <input type="radio" name="requestoption" value="1"> CHANGE FACULTY/MAJOR
+     <h4>Request option :-</h4>
+     <input type="radio" name="requestoption" value="1" required> CHANGE FACULTY/MAJOR
      <input type="radio" name="requestoption" value="2"> CHANGE ADDRESS
      <input type="radio" name="requestoption" value="3"> OTHER <br>
-     <!--<textarea name="requestmessage" rows="8" cols="80"></textarea>-->
-     <textarea name="requestmessage" class="form-control" rows="5" ></textarea>
-     <h4>Reason :-</h4>
-     <!--<textarea name="requestreason" rows="5" cols="80"></textarea>-->
+     <h4>Request message :-</h4>
+     <textarea name="requestmessage" class="form-control" rows="5" required></textarea>
+     <h4>Request reason :-</h4>
      <textarea name="requestreason" class="form-control" rows="5" ></textarea>
      
      <br>

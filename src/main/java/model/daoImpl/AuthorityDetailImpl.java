@@ -44,7 +44,7 @@ public class AuthorityDetailImpl implements AuthorityDetailDao {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("FROM PetitionForm P WHERE P.status = :st");
-            query.setParameter("st", status);
+            query.setString("st", status);
             
             p = (List<PetitionForm>) query.list();
             session.close();
@@ -61,7 +61,7 @@ public class AuthorityDetailImpl implements AuthorityDetailDao {
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
             Query query = session.createQuery("FROM ChangeSectionForm C WHERE C.status = :st");
-            query.setParameter("st", status);
+            query.setString("st", status);
             
             c = (List<ChangeSectionForm>) query.list();
             session.close();
