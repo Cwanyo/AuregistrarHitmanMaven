@@ -7,6 +7,9 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.daoImpl.StudentDetailImpl;
 import model.pojo.FormType;
+import model.pojo.StudentRequest;
+import model.pojo.StudentRequestId;
 
 /**
  *
@@ -38,19 +43,34 @@ public class StudentDetailServlet extends HttpServlet {
         userPath = request.getServletPath().toLowerCase();
         HttpSession session = request.getSession(true);
 
-        if (userPath.equals("/student/index")) {
-            session.setAttribute("petitionform", null);
-            System.out.println("redirected-------->");
-            System.out.println(userPath);
+        switch (userPath) {
+            // Back to index
+            case "/student/index":
+                session.setAttribute("petitionform", null);
+                System.out.println("redirected-------->");
+                System.out.println(userPath);
+                break;
+            // if petition list is requested
+            case "/student/petition":
+                List<FormType> f = new StudentDetailImpl().getListForm();
+                session.setAttribute("petitionform", f);
+                System.out.println("redirected-------->");
+                System.out.println(userPath);
+                break;
+            // if student submit petition form
+            case "/student/petition_form":
+                //StudentRequest s = new StudentRequest(new StudentRequestId(5715298,1,new Date()), formType, student, 0, userPath);
+                int r = new StudentDetailImpl().submitPetitionForm(null);
+                System.out.println("stage:"+r); 
+                break;
+            default:
+                break;
+        }
+
+        try {
             request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
-        } else if (userPath.equals("/student/petition")) {
-            List<FormType> f = new StudentDetailImpl().getListForm();
-            
-            session.setAttribute("petitionform", f);
-            System.out.println("redirected-------->");
-            System.out.println(userPath);
-            request.getRequestDispatcher("/WEB-INF/view/student/index.jsp").forward(request, response);
-        } 
+        } catch (IOException | ServletException e) {
+        }
 
     }
 

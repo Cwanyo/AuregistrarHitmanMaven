@@ -7,6 +7,7 @@ package model.dao;
 
 import java.util.List;
 import model.pojo.FormType;
+import model.pojo.StudentRequest;
 
 /**
  *
@@ -15,5 +16,9 @@ import model.pojo.FormType;
 public interface StudentDetailDao {
     
     public List<FormType> getListForm();
+    
+    //submit function
+    public int submitPetitionForm(StudentRequest s);
+  
     
 }
