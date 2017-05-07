@@ -3,25 +3,31 @@
     Created on : Apr 4, 2017, 8:59:38 PM
     Author     : C.wan_yo
 --%>
+<style>
+    body {
+        background-color: #737373;
+    }
+</style>
+
 <div class="container" style="position: absolute;
-left: 30%;
-top: 35%;
-width: 1100px;
-height: 500px;
-margin-top: -100px; /* half of you height */
-margin-left: -200px; /* half of you width */">
+     left: 30%;
+     top: 35%;
+     width: 1100px;
+     height: 500px;
+     margin-top: -100px; /* half of you height */
+     margin-left: -200px; /* half of you width */">
+
     <div class="row">
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Please Sign In</h3>
+                <div class="panel-heading" style="background-color: #403535;background-color: #4d4d4d;">
+                    <h3 class="panel-title" style="color: white;">Please Sign In</h3>
                 </div>
                 <div class="panel-body">
                     <form role="form">
                         <fieldset>
                             <div class="g-signin2" data-width="300" data-height="50" data-longtitle="true" data-onsuccess="onSignIn" data-theme="dark" data-prompt="select_account"></div>
                             <br>
-                            <img src="${userPicture}" class="img-circle"> 
                             <p>
                                 [Authority Account]<br>
                                 id : auteacher1111111@gmail.com<br>
