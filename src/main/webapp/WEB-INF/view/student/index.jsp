@@ -197,47 +197,7 @@
                                         <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
                                     </tr>
                                 </c:forEach>
-                                <!--
-                            <tr>
-                                <td>A</td>
-                                <td>10.08.2016</td>
-                                <td>
-                                    <div class="progress progress-striped active" style="width: 100%;">
-                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
-                                    </div>
-                                </td>
-                                <td><span class="label label-sm label-success">Approved</span></td>
-                            </tr>
-                            <tr>
-                                <td>B</td>
-                                <td>27.09.2016</td>
-                                <td>
-                                    <div class="progress progress-striped active" style="width: 100%;">
-                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
-                                    </div>
-                                </td>
-                                <td><span class="label label-sm label-info">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>C</td>
-                                <td>11.01.2016</td>
-                                <td>
-                                    <div class="progress progress-striped active" style="width: 100%;">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
-                                    </div>
-                                </td>
-                                <td><span class="label label-sm label-warning">Suspended</span></td>
-                            </tr>
-                            <tr>
-                                <td>D</td>
-                                <td>16.04.2016</td>
-                                <td>
-                                    <div class="progress progress-striped active" style="width: 100%;">
-                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
-                                    </div>
-                                </td>
-                                <td><span class="label label-sm label-danger">Blocked</span></td>
-                            </tr>-->
+                                
                             </tbody>
                         </table>
                     </div>
