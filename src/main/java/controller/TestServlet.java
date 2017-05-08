@@ -51,7 +51,7 @@ public class TestServlet extends HttpServlet {
         //This use for TESTING ONLY
         HttpSession hs = request.getSession(true);
         
-        List<ChangeSectionForm> p = new StudentDetailImpl().getChangeSectionForm("w", "5715298");
+        List<ChangeSectionForm> p = new StudentDetailImpl().getChangeSectionForm("w", 5715298);
         
         if (p == null) {
             System.out.println("NULKKKKK+");

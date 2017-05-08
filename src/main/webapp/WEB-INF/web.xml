@@ -66,6 +66,8 @@
         <url-pattern>/Student/petition_form</url-pattern>
         <url-pattern>/student/change_section_form</url-pattern>
         <url-pattern>/Student/change_section_form</url-pattern>
+        <url-pattern>/student/task</url-pattern>
+        <url-pattern>/Student/task</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AuthorityDetailServlet</servlet-name>

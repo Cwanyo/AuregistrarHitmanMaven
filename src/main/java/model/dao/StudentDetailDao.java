@@ -20,15 +20,19 @@ public interface StudentDetailDao {
     public List<FormType> getListForm();
     
     /*
+    
     type of status
+    a = approve
     w = wait 
     s = suspend
+    * = all
+    
      */
     //get petition form only
-    public List<PetitionForm> getPetitionFormRequest(String status,String studentId);
+    public List<PetitionForm> getPetitionFormRequest(String status,int studentId);
     
     //get change section form only
-    public List<ChangeSectionForm> getChangeSectionForm(String status,String studentId);
+    public List<ChangeSectionForm> getChangeSectionForm(String status,int studentId);
     
     //submit function
     public boolean SubmitPetitionForm(PetitionForm p);

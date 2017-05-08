@@ -17,6 +17,9 @@
 <!-- Custom Fonts -->
 <link href="${pageContext.request.contextPath}/Content/student/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
+<!-- Main css --->
+<link href="${pageContext.request.contextPath}/Content/student/css/main.css" rel="stylesheet" type="text/css">
+
 
 
 <div id="wrapper">
@@ -35,87 +38,9 @@
         <!-- /.navbar-header -->
 
         <ul class="nav navbar-top-links navbar-right">
-            
+
             <!-- /.dropdown -->
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-tasks fa-fw"></i> <i class="fa fa-caret-down"></i>
-                </a>
-                <ul class="dropdown-menu dropdown-tasks">
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 1</strong>
-                                    <span class="pull-right text-muted">40% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
-                                        <span class="sr-only">40% Complete (success)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 2</strong>
-                                    <span class="pull-right text-muted">20% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                                        <span class="sr-only">20% Complete</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 3</strong>
-                                    <span class="pull-right text-muted">60% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                                        <span class="sr-only">60% Complete (warning)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a href="#">
-                            <div>
-                                <p>
-                                    <strong>Task 4</strong>
-                                    <span class="pull-right text-muted">80% Complete</span>
-                                </p>
-                                <div class="progress progress-striped active">
-                                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-                                        <span class="sr-only">80% Complete (danger)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="divider"></li>
-                    <li>
-                        <a class="text-center" href="#">
-                            <strong>See All Tasks</strong>
-                            <i class="fa fa-angle-right"></i>
-                        </a>
-                    </li>
-                </ul>
-                <!-- /.dropdown-tasks -->
-            </li>
-           
+
             <!-- /.dropdown -->
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -166,7 +91,7 @@
     </nav>
 
     <div id="page-wrapper" >
-        <c:if test="${empty petitionform}">
+        <c:if test="${(empty petitionform) && (empty task)}">
 
             <div class="row">
                 <div class="col-lg-12">
@@ -223,6 +148,103 @@
             </div>
         </c:if>
 
+        <c:if test="${!empty task}">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Tasks</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <div class="col-lg-6">
+                <div class="panel panel-black">
+                    <div class="panel-body">
+                        <table class="table table-hover table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Task Name</th>
+                                    <th>Date</th>
+                                    <th>Percent</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="p" items="${plist}">
+                                    <tr>
+                                        <td>Petition</td>
+                                        <td>${p.getId().getSubmitTime()}</td>
+                                        <td>
+                                            <div class="progress progress-striped active" style="width: 100%;">
+                                                <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
+                                    </tr>
+                                </c:forEach>
+
+                                <c:forEach var="c" items="${clist}">
+                                    <tr>
+                                        <td>Change Section</td>
+                                        <td>${c.getId().getSubmitTime()}</td>
+                                        <td>
+                                            <div class="progress progress-striped active" style="width: 100%;">
+                                                <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
+                                            </div>
+                                        </td>
+                                        <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
+                                    </tr>
+                                </c:forEach>
+                                <!--
+                            <tr>
+                                <td>A</td>
+                                <td>10.08.2016</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 100%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-success">Approved</span></td>
+                            </tr>
+                            <tr>
+                                <td>B</td>
+                                <td>27.09.2016</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 70%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-info">Pending</span></td>
+                            </tr>
+                            <tr>
+                                <td>C</td>
+                                <td>11.01.2016</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-warning">Suspended</span></td>
+                            </tr>
+                            <tr>
+                                <td>D</td>
+                                <td>16.04.2016</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-danger">Blocked</span></td>
+                            </tr>-->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </c:if>
     </div>
     <!-- /.row -->
 </div>

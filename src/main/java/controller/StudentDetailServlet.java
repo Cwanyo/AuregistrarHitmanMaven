@@ -47,32 +47,47 @@ public class StudentDetailServlet extends HttpServlet {
         userPath = request.getServletPath().toLowerCase();
         HttpSession session = request.getSession(true);
 
+        Student student = (Student) session.getAttribute("studentInfo");
+        
         if (userPath.equals("/student/index")) {
             session.setAttribute("petitionform", null);
+            session.setAttribute("task", null);
         } else if (userPath.equals("/student/petition")) {
+            session.setAttribute("task", null);
+            
             List<FormType> f = new StudentDetailImpl().getListForm();
             session.setAttribute("petitionform", f);
+            System.out.println("show petition page");
         } else if (userPath.equals("/student/petition_form")) {
-            Student student = (Student) session.getAttribute("studentInfo");
             int requestOption = Integer.parseInt(request.getParameter("requestoption"));
             String requestMessage = request.getParameter("requestmessage");
             String requestReason = request.getParameter("requestreason");
             PetitionFormId pid = new PetitionFormId(new Timestamp(new Date().getTime()), student.getId());
             
-            PetitionForm p = new PetitionForm(pid, student, 0, "w", requestOption, requestMessage, requestReason, "");
+            PetitionForm p = new PetitionForm(pid, student, 0, "waiting", requestOption, requestMessage, requestReason, "");
             boolean status = new StudentDetailImpl().SubmitPetitionForm(p);
             System.out.println("submit petition_form : " + status);
         } else if (userPath.equals("/student/change_section_form")) {
-            Student student = (Student) session.getAttribute("studentInfo");
             int requestOption = Integer.parseInt(request.getParameter("requestoption"));
             String courseNumber = request.getParameter("coursenumber");
             String sectionNumber = request.getParameter("sectionnumber");
             String requestMessage = request.getParameter("requestmessage");
             ChangeSectionFormId pid = new ChangeSectionFormId(new Timestamp(new Date().getTime()), student.getId());
             
-            ChangeSectionForm c = new ChangeSectionForm(pid, student, 0, "w", requestOption, courseNumber, sectionNumber, requestMessage, "");
+            ChangeSectionForm c = new ChangeSectionForm(pid, student, 0, "waiting", requestOption, courseNumber, sectionNumber, requestMessage, "");
             boolean status = new StudentDetailImpl().SubmitChangeSectionForm(c);
             System.out.println("submit change_section_form : " + status);
+        }else if(userPath.equals("/student/task")){
+            session.setAttribute("petitionform", null);
+            
+            List<PetitionForm> plist = new StudentDetailImpl().getPetitionFormRequest("*", student.getId());
+            List<ChangeSectionForm> cllist = new StudentDetailImpl().getChangeSectionForm("*", student.getId());
+            
+            session.setAttribute("plist", plist);
+            session.setAttribute("clist", cllist);
+            
+            session.setAttribute("task", "task");
+            System.out.println("show task page");
         }
 
         try {
