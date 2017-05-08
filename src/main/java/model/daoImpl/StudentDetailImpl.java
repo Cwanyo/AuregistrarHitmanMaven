@@ -43,15 +43,20 @@ public class StudentDetailImpl implements StudentDetailDao {
     }
 
     @Override
-    public List<PetitionForm> getPetitionFormRequest(String status, String studentId) {
+    public List<PetitionForm> getPetitionFormRequest(String status, int studentId) {
         List<PetitionForm> p = null;
 
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("FROM PetitionForm P WHERE P.status = :st AND P.student = :id");
-            query.setString("st", status);
-            query.setInteger("id", Integer.parseInt(studentId));
-
+            Query query = null;
+            if (status.equals("*")) {
+                query = session.createQuery("FROM PetitionForm P WHERE P.student = :id");
+                query.setInteger("id", studentId);
+            } else {
+                query = session.createQuery("FROM PetitionForm P WHERE P.status = :st AND P.student = :id");
+                query.setString("st", status);
+                query.setInteger("id", studentId);
+            }
             p = (List<PetitionForm>) query.list();
             session.close();
         } catch (HibernateException e) {
@@ -61,14 +66,20 @@ public class StudentDetailImpl implements StudentDetailDao {
     }
 
     @Override
-    public List<ChangeSectionForm> getChangeSectionForm(String status,String studentId) {
+    public List<ChangeSectionForm> getChangeSectionForm(String status, int studentId) {
         List<ChangeSectionForm> c = null;
 
         try {
             Session session = HibernateUtil.getSessionFactory().openSession();
-            Query query = session.createQuery("FROM ChangeSectionForm P WHERE P.status = :st AND P.student = :id");
-            query.setString("st", status);
-            query.setInteger("id", Integer.parseInt(studentId));
+            Query query = null;
+            if (status.equals("*")) {
+                query = session.createQuery("FROM ChangeSectionForm P WHERE P.student = :id");
+                query.setInteger("id", studentId);
+            } else {
+                query = session.createQuery("FROM ChangeSectionForm P WHERE P.status = :st AND P.student = :id");
+                query.setString("st", status);
+                query.setInteger("id", studentId);
+            }
 
             c = (List<ChangeSectionForm>) query.list();
             session.close();
