@@ -49,12 +49,6 @@
     //google callback. This function will redirect to our login servlet
     function onSignIn(googleUser) {
         var profile = googleUser.getBasicProfile();
-        console.log('ID: ' + profile.getId());
-        console.log('Name: ' + profile.getName());
-        console.log('Image URL: ' + profile.getImageUrl());
-        console.log('Email: ' + profile.getEmail());
-        console.log('id_token: ' + googleUser.getAuthResponse().id_token);
-
         var redirectUrl = 'Login';
 
         //using jquery to post data dynamically
