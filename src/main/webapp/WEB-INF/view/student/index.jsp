@@ -23,7 +23,6 @@
 
 
 <div id="wrapper">
-
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
@@ -91,6 +90,7 @@
     </nav>
 
     <div id="page-wrapper" >
+
         <c:if test="${(empty petitionform) && (empty task)}">
 
             <div class="row">
@@ -197,20 +197,36 @@
                                         <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
                                     </tr>
                                 </c:forEach>
-                                
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
-
         </c:if>
+
+        <!-- Modal POPUP -->
+        <div class="modal fade" id="popUp" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">INFO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You have submitted the form successfully!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------------>
     </div>
-    <!-- /.row -->
 </div>
 <!-- /#page-wrapper -->
 
-</div>
 <!-- /#wrapper -->
 <script>
 
@@ -218,6 +234,10 @@
         $(id).load("${pageContext.request.contextPath}/Content/student/formtype/" + path);
     }
 
+    $('form').on('submit', function () {
+        alert(123);
+        //$('#popUp').modal();
+    });
 </script>
 
 <!-- Metis Menu Plugin JavaScript -->
