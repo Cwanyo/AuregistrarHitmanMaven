@@ -12,7 +12,7 @@ body {
 #page-wrapper {
   padding: 0 15px;
   /*min-height: 568px;*/
-  height: 1200px;
+  height: auto;
   background-color: white;
 }
 @media (min-width: 768px) {

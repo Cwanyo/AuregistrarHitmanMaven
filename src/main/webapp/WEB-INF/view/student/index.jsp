@@ -20,6 +20,10 @@
 <!-- Main css --->
 <link href="${pageContext.request.contextPath}/Content/student/css/main.css" rel="stylesheet" type="text/css">
 
+<link href="${pageContext.request.contextPath}/Content/student/css/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/Content/student/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 
 
 <div id="wrapper">
@@ -46,10 +50,9 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-                    <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
-                    </li>
+                    <a style="right: auto">
+                        <img src="${userPicture}" class="img-circle"width="130" height="130">
+                    </a><br></br>
                     <li class="divider"></li>
                     <li><a href="${pageContext.request.contextPath}/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
@@ -81,7 +84,6 @@
                         <a href="${pageContext.request.contextPath}/student/task"><i class="fa fa-fw fa-tasks"></i> Tasks</a>
                     </li>   
                     <!-- /.nav-second-level -->
-                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -151,7 +153,7 @@
         <c:if test="${!empty task}">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                         <h1 class="page-header">Tasks</h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -159,52 +161,92 @@
                 <!-- /.row -->
             </div>
 
-            <div class="col-lg-6">
-                <div class="panel panel-black">
-                    <div class="panel-body">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Task Name</th>
-                                    <th>Date</th>
-                                    <th>Percent</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="p" items="${plist}">
-                                    <tr>
-                                        <td>Petition</td>
-                                        <td>${p.getId().getSubmitTime()}</td>
-                                        <td>
-                                            <div class="progress progress-striped active" style="width: 100%;">
-                                                <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
-                                            </div>
-                                        </td>
-                                        <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
-                                    </tr>
-                                </c:forEach>
+            <div class="container" style="margin-right: 12cm">
+                <div id="toolbar"></div>
+                <table id="myTable" data-toggle="table" data-detail-view="true" data-detail-formatter="detailFormatter">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Date</th>
+                            <th>Percent</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:set var = "countRow" value="${0}"/>
+                        <!--/Loop p list -->
+                        <c:forEach var="p" items="${plist}">
+                            <tr>
+                                <td>Petition</td>
+                                <td>${p.getId().getSubmitTime()}</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
+                            </tr>
+                        <span style="display: none;" id="desc${countRow}">
+                            <div>
+                                <h4>Request option : 
+                                    <c:if test="${p.getRequestOption()==1}">
+                                        CHANGE FACULTY/MAJOR
+                                    </c:if>
+                                    <c:if test="${p.getRequestOption()==2}">
+                                        CHANGE ADDRESS
+                                    </c:if>
+                                    <c:if test="${p.getRequestOption()==3}">
+                                        OTHER 
+                                    </c:if>
+                                </h4>
+                                <h4>Request message :-</h4>
+                                <textarea name="requestmessage" class="form-control" rows="5" readonly>${p.getRequestMessage()}</textarea>
+                                <h4>Request reason :-</h4>
+                                <textarea name="requestreason" class="form-control" rows="5" readonly>${p.getRequestReason()}</textarea>
+                            </div>
+                        </span>
+                        <c:set var = "countRow" value="${countRow+1}"/>
+                    </c:forEach>
+                    <!--End Loop p list -->
 
-                                <c:forEach var="c" items="${clist}">
-                                    <tr>
-                                        <td>Change Section</td>
-                                        <td>${c.getId().getSubmitTime()}</td>
-                                        <td>
-                                            <div class="progress progress-striped active" style="width: 100%;">
-                                                <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
-                                            </div>
-                                        </td>
-                                        <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
-                                    </tr>
-                                </c:forEach>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    <!--/Loop c list -->
+                    <c:forEach var="c" items="${clist}">
+                        <tr>
+                            <td>Change Section</td>
+                            <td>${c.getId().getSubmitTime()}</td>
+                            <td>
+                                <div class="progress progress-striped active" style="width: 100%;">
+                                    <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
+                                </div>
+                            </td>
+                            <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
+                        </tr>
+                        <span style="display: none;" id="desc${countRow}">
+                            <div>
+                                <h4>Request option : 
+                                    <c:if test="${c.getRequestOption()==1}">
+                                        Normal Section
+                                    </c:if>
+                                    <c:if test="${c.getRequestOption()==2}">
+                                        Full Section 
+                                    </c:if>
+                                </h4>
+                                Course Number : ${c.getCourseNumber()} <br>
+                                Section Number : ${c.getSectionNumber()}
+                                <h4>Request message :-</h4>
+                                <textarea name="requestmessage" class="form-control" rows="5" readonly>${c.getRequestMessage()}</textarea>
+                            </div>
+                        </span>
+                        <c:set var = "countRow" value="${countRow+1}"/>
+                    </c:forEach>
+                    <!--End Loop c list -->
+                    </tbody>
+                </table>
             </div>
         </c:if>
 
+
+        <div style="height: 50px;"></div>
         <!-- Modal POPUP -->
         <div class="modal fade" id="popUp" role="dialog">
             <div class="modal-dialog modal-sm">
@@ -238,6 +280,32 @@
         alert(123);
         //$('#popUp').modal();
     });
+
+    function Check_Option(id) {
+        alert(id);
+    }
+
+    var $table = $('#myTable');
+
+    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+        var res = $("#desc" + index).html();
+        $detail.html(res);
+    });
+
+    $table.on("click-row.bs.table", function (e, row, $tr) {
+
+        // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
+        console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+
+        // In my real scenarion, trigger expands row with text detailFormatter..
+        //$tr.find(">td>.detail-icon").trigger("click");
+        // $tr.find(">td>.detail-icon").triggerHandler("click");
+        if ($tr.next().is('tr.detail-view')) {
+            $table.bootstrapTable('collapseRow', $tr.data('index'));
+        } else {
+            $table.bootstrapTable('expandRow', $tr.data('index'));
+        }
+    });
 </script>
 
 <!-- Metis Menu Plugin JavaScript -->
@@ -249,6 +317,9 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${pageContext.request.contextPath}/Content/student/js/sb-admin-2.js"></script>
+
+<script src="${pageContext.request.contextPath}/Content/student/js/bootstrap-table.min.js"></script>
+
 
 
 
