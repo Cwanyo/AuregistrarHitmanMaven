@@ -20,6 +20,10 @@
 <!-- Main css --->
 <link href="${pageContext.request.contextPath}/Content/student/css/main.css" rel="stylesheet" type="text/css">
 
+<link href="${pageContext.request.contextPath}/Content/student/css/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/Content/student/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
 
 
 <div id="wrapper">
@@ -46,9 +50,10 @@
                     <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
+                    <a style="right: auto">
+                        <img src="${userPicture}" class="img-circle"width="130" height="130">
+                    </a><br></br>
                     <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
                     <li><a href="${pageContext.request.contextPath}/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
@@ -81,7 +86,6 @@
                         <a href="${pageContext.request.contextPath}/student/task"><i class="fa fa-fw fa-tasks"></i> Tasks</a>
                     </li>   
                     <!-- /.nav-second-level -->
-                    </li>
                 </ul>
             </div>
             <!-- /.sidebar-collapse -->
@@ -151,7 +155,7 @@
         <c:if test="${!empty task}">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12">
+                    <div class="col-lg-10">
                         <h1 class="page-header">Tasks</h1>
                     </div>
                     <!-- /.col-lg-12 -->
@@ -159,49 +163,63 @@
                 <!-- /.row -->
             </div>
 
-            <div class="col-lg-6">
-                <div class="panel panel-black">
-                    <div class="panel-body">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Task Name</th>
-                                    <th>Date</th>
-                                    <th>Percent</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <c:forEach var="p" items="${plist}">
-                                    <tr>
-                                        <td>Petition</td>
-                                        <td>${p.getId().getSubmitTime()}</td>
-                                        <td>
-                                            <div class="progress progress-striped active" style="width: 100%;">
-                                                <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
-                                            </div>
-                                        </td>
-                                        <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
-                                    </tr>
-                                </c:forEach>
-
-                                <c:forEach var="c" items="${clist}">
-                                    <tr>
-                                        <td>Change Section</td>
-                                        <td>${c.getId().getSubmitTime()}</td>
-                                        <td>
-                                            <div class="progress progress-striped active" style="width: 100%;">
-                                                <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
-                                            </div>
-                                        </td>
-                                        <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
-                                    </tr>
-                                </c:forEach>
-
-                            </tbody>
-                        </table>
-                    </div>
+            <div class="container" style="margin-right: 12cm">
+                <div id="toolbar">
                 </div>
+                <table id="myTable" data-toggle="table" data-detail-view="true" data-detail-formatter="detailFormatter">
+                    <thead>
+                        <tr>
+                            <th>Task Name</th>
+                            <th>Date</th>
+                            <th>Percent</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <c:forEach var="p" items="${plist}">
+                            <tr>
+                                <td>Petition</td>
+                                <td>${p.getId().getSubmitTime()}</td>
+                                <td>
+                                    <div class="progress progress-striped active" style="width: 100%;">
+                                        <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
+                                    </div>
+                                </td>
+                                <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
+                            </tr>
+                        </c:forEach>
+
+                        <!-- id number is generated by tt_template -->
+                    <span style="display: none;" id="desc0">
+                        <strong class="bold">Description:</strong>
+                        <br>
+                        <pre>This is row with id=0, containing other content</pre>
+                    </span>
+                    </tr>
+                    <tr>
+                        <c:forEach var="c" items="${clist}">
+                        <tr>
+                            <td>Change Section</td>
+                            <td>${c.getId().getSubmitTime()}</td>
+                            <td>
+                                <div class="progress progress-striped active" style="width: 100%;">
+                                    <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
+                                </div>
+                            </td>
+                            <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
+                        </tr>
+                    </c:forEach>
+
+                    <!-- id number is generated by tt_template -->
+                    <span style="display: none;" id="desc1">
+                        <strong class="bold">Description:</strong>
+                        <br>
+                        <pre>This is row with id=1, containing another content</pre>
+                    </span>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </c:if>
 
@@ -227,6 +245,30 @@
 </div>
 <!-- /#page-wrapper -->
 
+<script>
+    var $table = $('#myTable');
+
+    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+        var res = $("#desc" + index).html();
+        $detail.html(res);
+    });
+
+    $table.on("click-row.bs.table", function (e, row, $tr) {
+
+        // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
+        console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+
+        // In my real scenarion, trigger expands row with text detailFormatter..
+        //$tr.find(">td>.detail-icon").trigger("click");
+        // $tr.find(">td>.detail-icon").triggerHandler("click");
+        if ($tr.next().is('tr.detail-view')) {
+            $table.bootstrapTable('collapseRow', $tr.data('index'));
+        } else {
+            $table.bootstrapTable('expandRow', $tr.data('index'));
+        }
+    });
+</script>
+
 <!-- /#wrapper -->
 <script>
 
@@ -249,6 +291,10 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="${pageContext.request.contextPath}/Content/student/js/sb-admin-2.js"></script>
+
+<script src="${pageContext.request.contextPath}/Content/student/js/bootstrap-table.min.js"></script>
+
+<script src="${pageContext.request.contextPath}/Content/student/js/bootstrap.min.js"></script>
 
 
 
