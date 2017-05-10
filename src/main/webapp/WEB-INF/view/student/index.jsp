@@ -36,7 +36,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/student/index">Student Page</a>
+            <a class="navbar-brand" style="font-size: 25px;" href="${pageContext.request.contextPath}/student/index">Student Page <span style="font-size: 13px;color: black;font-weight: bold">( Welcome, ${userName} )</span></a>
         </div>
         <!-- /.navbar-header -->
 

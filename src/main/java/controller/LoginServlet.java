@@ -87,10 +87,12 @@ public class LoginServlet extends HttpServlet {
 
             String email = payLoad.getEmail();
             String pictureUrl = (String) payLoad.get("picture");
-
+            String name = (String) payLoad.get("name");
+                 
             //set session
             HttpSession session = request.getSession(true);
             session.setAttribute("userPicture", pictureUrl);
+            session.setAttribute("userName", name);
 
             //check as student
             Student s = new LoginDaoImpl().loginStudent(email);
