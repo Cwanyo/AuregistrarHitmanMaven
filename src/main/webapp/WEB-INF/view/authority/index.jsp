@@ -1,0 +1,166 @@
+<%-- 
+    Document   : index
+    Created on : May 10, 2017, 3:57:08 AM
+    Author     : C.wan_yo
+--%>
+
+<!-- MetisMenu CSS -->
+<link href="${pageContext.request.contextPath}/Content/authority/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+<!-- Custom CSS -->
+<link href="${pageContext.request.contextPath}/Content/authority/css/sb-admin-2.css" rel="stylesheet">
+
+<!-- Morris Charts CSS -->
+<link href="${pageContext.request.contextPath}/Content/authority/vendor/morrisjs/morris.css" rel="stylesheet">
+
+<!-- Custom Fonts -->
+<link href="${pageContext.request.contextPath}/Content/authority/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+<!-- Main css --->
+<link href="${pageContext.request.contextPath}/Content/authority/css/main.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/Content/authority/css/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+
+<link href="${pageContext.request.contextPath}/Content/authority/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+
+
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" style="font-size: 25px;" href="${pageContext.request.contextPath}/authority/index">${authorityInfo.getRole()} Page <span style="font-size: 13px;color: black;font-weight: bold">( Welcome, ${userName} )</span></a>
+        </div>
+        <!-- /.navbar-header -->
+
+
+        <ul class="nav navbar-top-links navbar-right">
+
+            <!-- /.dropdown -->
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <a style="right: auto">
+                        <img src="${userPicture}" class="img-circle"width="130" height="130">
+                    </a><br></br>
+                    <li class="divider"></li>
+                    <li><a href="${pageContext.request.contextPath}/Logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul>
+                <!-- /.dropdown-user -->
+            </li>
+            <!-- /.dropdown -->
+        </ul>
+        <!-- /.navbar-top-links -->
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search">
+                        <div class="input-group custom-search-form">
+                            <input type="text" class="form-control" placeholder="Search...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <!-- /input-group -->
+                    </li>
+                    <li>
+                        <a href="${pageContext.request.contextPath}/authority/request"><i class="fa fa-fw fa-file-text"></i> Student Request</a>
+                    </li>
+                    <!-- /.nav-second-level -->
+                </ul>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div>
+        <!-- /.navbar-static-side -->
+    </nav>
+
+    <div id="page-wrapper" >
+
+
+
+        <div style="height: 50px;"></div>
+        <!-- Modal POPUP -->
+        <div class="modal fade" id="popUp" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">INFO</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>You have submitted the form successfully!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!------------------>
+    </div>
+</div>
+<!-- /#page-wrapper -->
+
+<!-- /#wrapper -->
+<script>
+
+    function load_form(id, path) {
+        $(id).load("${pageContext.request.contextPath}/Content/authority/formtype/" + path);
+    }
+
+    $('form').on('submit', function () {
+        alert(123);
+        //$('#popUp').modal();
+    });
+
+    function Check_Option(id) {
+        alert(id);
+    }
+
+    var $table = $('#myTable');
+
+    $table.on('expand-row.bs.table', function (e, index, row, $detail) {
+        var res = $("#desc" + index).html();
+        $detail.html(res);
+    });
+
+    $table.on("click-row.bs.table", function (e, row, $tr) {
+
+        // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
+        console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+
+        // In my real scenarion, trigger expands row with text detailFormatter..
+        //$tr.find(">td>.detail-icon").trigger("click");
+        // $tr.find(">td>.detail-icon").triggerHandler("click");
+        if ($tr.next().is('tr.detail-view')) {
+            $table.bootstrapTable('collapseRow', $tr.data('index'));
+        } else {
+            $table.bootstrapTable('expandRow', $tr.data('index'));
+        }
+    });
+</script>
+
+<!-- Metis Menu Plugin JavaScript -->
+<script src="${pageContext.request.contextPath}/Content/authority/vendor/metisMenu/metisMenu.min.js"></script>
+
+<!-- Morris Charts JavaScript -->
+<script src="${pageContext.request.contextPath}/Content/authority/vendor/raphael/raphael.min.js"></script>
+<script src="${pageContext.request.contextPath}/Content/authority/vendor/morrisjs/morris.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="${pageContext.request.contextPath}/Content/authority/js/sb-admin-2.js"></script>
+
+<script src="${pageContext.request.contextPath}/Content/authority/js/bootstrap-table.min.js"></script>
+

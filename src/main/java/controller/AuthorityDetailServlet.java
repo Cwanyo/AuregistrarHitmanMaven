@@ -11,6 +11,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.pojo.Authority;
 
 /**
  *
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthorityDetailServlet extends HttpServlet {
 
+    public String userPath;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -29,19 +33,26 @@ public class AuthorityDetailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet AuthorityDetailServlet</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet AuthorityDetailServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        
+        userPath = request.getServletPath().toLowerCase();
+        HttpSession session = request.getSession(true);
+
+        
+        Authority authority = (Authority) session.getAttribute("authorityInfo");
+        
+        if (userPath.equals("/student/index")) {
+            
+        } else if(userPath.equals("/student/request")) {
+            
         }
+        
+        try {
+            System.out.println("redirected-------->");
+            System.out.println(userPath);
+            request.getRequestDispatcher("/WEB-INF/view/authority/index.jsp").forward(request, response);
+        } catch (IOException | ServletException e) {
+        }
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

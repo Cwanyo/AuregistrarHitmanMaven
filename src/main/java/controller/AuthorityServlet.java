@@ -34,7 +34,7 @@ public class AuthorityServlet extends HttpServlet {
         if (session.getAttribute("authorityInfo") == null) {
             request.getRequestDispatcher("/index.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("/WEB-INF/view/authority/mainAuthorityTest.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/view/authority/index.jsp").forward(request, response);
 
         }
     }
