@@ -76,7 +76,9 @@
     <servlet-mapping>
         <servlet-name>AuthorityDetailServlet</servlet-name>
         <url-pattern>/authority/request</url-pattern>
+        <url-pattern>/Authority/index</url-pattern>
         <url-pattern>/Authority/request</url-pattern>
+        <url-pattern>/authority/index</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

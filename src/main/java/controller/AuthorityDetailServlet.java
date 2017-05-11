@@ -7,12 +7,16 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.daoImpl.AuthorityDetailImpl;
 import model.pojo.Authority;
+import model.pojo.ChangeSectionForm;
+import model.pojo.PetitionForm;
 
 /**
  *
@@ -21,7 +25,7 @@ import model.pojo.Authority;
 public class AuthorityDetailServlet extends HttpServlet {
 
     public String userPath;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,16 +37,25 @@ public class AuthorityDetailServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         userPath = request.getServletPath().toLowerCase();
         HttpSession session = request.getSession(true);
 
-        
         Authority authority = (Authority) session.getAttribute("authorityInfo");
-        
-        if (userPath.equals("/student/index")) {
+
+        if (userPath.equals("/authority/index")) {
+            session.setAttribute("plist", null);
+            session.setAttribute("clist", null);
+            session.setAttribute("task", null);
+        } else if (userPath.equals("/authority/request")) {
+            List<PetitionForm> plist = new AuthorityDetailImpl().getPetitionFormRequest("waiting");
+            List<ChangeSectionForm> clist = new AuthorityDetailImpl().getChangeSectionForm("waiting");
+            session.setAttribute("plist", plist);
+            session.setAttribute("clist", clist);
+            session.setAttribute("task", "task");
+        }else if(userPath.equals("/authority/approve")) {
             
-        } else if(userPath.equals("/student/request")) {
+        }else if(userPath.equals("/authority/suspend")) {
             
         }
         
@@ -52,7 +65,7 @@ public class AuthorityDetailServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/authority/index.jsp").forward(request, response);
         } catch (IOException | ServletException e) {
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

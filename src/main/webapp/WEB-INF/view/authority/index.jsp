@@ -88,6 +88,112 @@
 
     <div id="page-wrapper" >
 
+        <c:if test="${(empty task)}">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Authority</h1>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+            <a style='color: black;font-size: 15px'>Authority petitions are filed for consideration of exception to a University policy. The Policies and Procedures for the Student
+                Petition have been established by Assumption University Office Of The University Registrar.<br></br></a>
+            <a style='color: black;font-size: 15px'>To select your petition request please click "Petition Forms" at the left menu bar.</a>
+
+        </c:if>
+        <c:if test="${!empty task}">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-10">
+                        <h1 class="page-header">Student Request</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+                <!-- /.row -->
+            </div>
+
+            <div class="container" style="margin-right: 12cm">
+                <div id="toolbar"></div>
+                <table id="myTable" data-toggle="table" data-detail-view="true" data-detail-formatter="detailFormatter">
+                    <thead>
+                        <tr>
+                            <th> ID </th>
+                            <th> Type </th>
+                            <th> Status </th>
+                            <th> Signature </th>
+                            <th> Approve </th>
+                            <th> Suspend </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:set var = "countRow" value="${0}"/>
+                        <!--/Loop p list -->
+                        <c:forEach var="p" items="${plist}">
+                            <tr>
+                                <td>${p.student.id}</td>
+                                <td>Petition</td>
+                                <td>${p.status}</td>
+                                <td><input type="text" class="form-control input-sm" name="signature" value="" /></td>
+                                <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve()"></td>
+                                <td><input type="button" value="Cancel" class="btn btn-block" onclick="suspend()"></td>
+                            </tr>
+                        <span style="display: none;" id="desc${countRow}">
+                            <div>
+                                <h4>Request option : 
+                                    <c:if test="${p.getRequestOption()==1}">
+                                        CHANGE FACULTY/MAJOR
+                                    </c:if>
+                                    <c:if test="${p.getRequestOption()==2}">
+                                        CHANGE ADDRESS
+                                    </c:if>
+                                    <c:if test="${p.getRequestOption()==3}">
+                                        OTHER 
+                                    </c:if>
+                                </h4>
+                                <h4>Request message :-</h4>
+                                <textarea name="requestmessage" class="form-control" rows="5" readonly>${p.getRequestMessage()}</textarea>
+                                <h4>Request reason :-</h4>
+                                <textarea name="requestreason" class="form-control" rows="5" readonly>${p.getRequestReason()}</textarea>
+                            </div>
+                        </span>
+                        <c:set var = "countRow" value="${countRow+1}"/>
+                    </c:forEach>
+                    <!--End Loop p list -->
+
+                    <!--/Loop c list -->
+                    <c:forEach var="c" items="${clist}">
+                        <tr>
+                            <td>${c.student.id}</td>
+                            <td>Change Section</td>
+                            <td>${c.status}</td>
+                            <td><input type="text" class="form-control input-sm" name="signature" value="" /></td>
+                            <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve()"></td>
+                            <td><input type="button" value="Cancel" class="btn btn-block" onclick="suspend()"></td>
+                        </tr>
+                        <span style="display: none;" id="desc${countRow}">
+                            <div>
+                                <h4>Request option : 
+                                    <c:if test="${c.getRequestOption()==1}">
+                                        Normal Section
+                                    </c:if>
+                                    <c:if test="${c.getRequestOption()==2}">
+                                        Full Section 
+                                    </c:if>
+                                </h4>
+                                Course Number : ${c.getCourseNumber()} <br>
+                                Section Number : ${c.getSectionNumber()}
+                                <h4>Request message :-</h4>
+                                <textarea name="requestmessage" class="form-control" rows="5" readonly>${c.getRequestMessage()}</textarea>
+                            </div>
+                        </span>
+                        <c:set var = "countRow" value="${countRow+1}"/>
+                    </c:forEach>
+                    <!--End Loop c list -->
+                    </tbody>
+                </table>
+            </div>
+        </c:if>
 
 
         <div style="height: 50px;"></div>
@@ -136,20 +242,20 @@
         $detail.html(res);
     });
 
-    $table.on("click-row.bs.table", function (e, row, $tr) {
-
-        // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
-        console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
-
-        // In my real scenarion, trigger expands row with text detailFormatter..
-        //$tr.find(">td>.detail-icon").trigger("click");
-        // $tr.find(">td>.detail-icon").triggerHandler("click");
-        if ($tr.next().is('tr.detail-view')) {
-            $table.bootstrapTable('collapseRow', $tr.data('index'));
-        } else {
-            $table.bootstrapTable('expandRow', $tr.data('index'));
-        }
-    });
+    /*$table.on("click-row.bs.table", function (e, row, $tr) {
+     
+     // prints Clicked on: table table-hover, no matter if you click on row or detail-icon
+     console.log("Clicked on: " + $(e.target).attr('class'), [e, row, $tr]);
+     
+     // In my real scenarion, trigger expands row with text detailFormatter..
+     //$tr.find(">td>.detail-icon").trigger("click");
+     // $tr.find(">td>.detail-icon").triggerHandler("click");
+     if ($tr.next().is('tr.detail-view')) {
+     $table.bootstrapTable('collapseRow', $tr.data('index'));
+     } else {
+     $table.bootstrapTable('expandRow', $tr.data('index'));
+     }
+     });*/
 </script>
 
 <!-- Metis Menu Plugin JavaScript -->
