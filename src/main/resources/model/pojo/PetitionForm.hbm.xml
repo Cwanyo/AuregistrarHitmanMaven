@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated May 3, 2017 2:10:41 AM by Hibernate Tools 4.3.1 -->
+<!-- Generated Jun 5, 2017 1:35:23 AM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="model.pojo.PetitionForm" table="petition_form" catalog="heroku_1e588fc995ef1f5" optimistic-lock="version">
         <composite-id name="id" class="model.pojo.PetitionFormId">
@@ -30,8 +30,17 @@
         <property name="requestReason" type="string">
             <column name="request_reason" length="1000" />
         </property>
-        <property name="authoritySignature" type="string">
-            <column name="authority_signature" length="100" />
+        <property name="deanApprovalSignature" type="string">
+            <column name="dean_approval_signature" length="100" />
+        </property>
+        <property name="deanApprovalDate" type="timestamp">
+            <column name="dean_approval_date" length="19" />
+        </property>
+        <property name="advisorApprovalSignature" type="string">
+            <column name="advisor_approval_signature" length="100" />
+        </property>
+        <property name="advisorApprovalDate" type="timestamp">
+            <column name="advisor_approval_date" length="19" />
         </property>
     </class>
 </hibernate-mapping>

@@ -64,7 +64,7 @@ public class StudentDetailServlet extends HttpServlet {
             String requestReason = request.getParameter("requestreason");
             PetitionFormId pid = new PetitionFormId(new Timestamp(new Date().getTime()), student.getId());
             
-            PetitionForm p = new PetitionForm(pid, student, 0, "waiting", requestOption, requestMessage, requestReason, "");
+            PetitionForm p = new PetitionForm(pid, student, 0, "waiting", requestOption, requestMessage, requestReason, null,null,null,null);
             boolean status = new StudentDetailImpl().SubmitPetitionForm(p);
             System.out.println("submit petition_form : " + status);
         } else if (userPath.equals("/student/change_section_form")) {
@@ -74,7 +74,7 @@ public class StudentDetailServlet extends HttpServlet {
             String requestMessage = request.getParameter("requestmessage");
             ChangeSectionFormId pid = new ChangeSectionFormId(new Timestamp(new Date().getTime()), student.getId());
             
-            ChangeSectionForm c = new ChangeSectionForm(pid, student, 0, "waiting", requestOption, courseNumber, sectionNumber, requestMessage, "");
+            ChangeSectionForm c = new ChangeSectionForm(pid, student, 0, "waiting", requestOption, courseNumber, sectionNumber, requestMessage, null,null);
             boolean status = new StudentDetailImpl().SubmitChangeSectionForm(c);
             System.out.println("submit change_section_form : " + status);
         }else if(userPath.equals("/student/task")){
