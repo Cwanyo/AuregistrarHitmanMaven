@@ -5,6 +5,7 @@
  */
 package model.daoImpl;
 
+import java.util.ArrayList;
 import java.util.List;
 import model.dao.AuthorityDetailDao;
 import model.pojo.ChangeSectionForm;
@@ -70,5 +71,38 @@ public class AuthorityDetailImpl implements AuthorityDetailDao {
         
         return c;
     }
+
+    @Override
+    public List<PetitionForm> getPetitionFormsRequestForRole(String role, String status) {
+        String [] flow = new String[]{"student","advisor","dean"};
+        List<PetitionForm> ptemp = getPetitionFormRequest("waiting");
+        List<PetitionForm> presult = new ArrayList<>();
+        
+        for (int i = 0; i < ptemp.size(); i++) {
+            //if the form in the stage of the role
+            if(role.toLowerCase().equals(flow[ptemp.get(i).getCurrentStage()])){
+                presult.add(ptemp.get(i));
+            }
+        }
+        
+        return presult;
+    }
+
+    @Override
+    public List<ChangeSectionForm> getChangeSectionFormForRole(String role, String status) {
+        String [] flow = new String[]{"student","dean"};
+        List<ChangeSectionForm> ctemp = getChangeSectionForm("waiting");
+        List<ChangeSectionForm> cresult = new ArrayList<>();
+        
+        for (int i = 0; i < ctemp.size(); i++) {
+            //if the form in the stage of the role
+            if(role.toLowerCase().equals(flow[ctemp.get(i).getCurrentStage()])){
+                cresult.add(ctemp.get(i));
+            }
+        }
+        
+        return cresult;
+    }
+
 
 }

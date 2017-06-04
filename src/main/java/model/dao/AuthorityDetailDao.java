@@ -21,14 +21,21 @@ public interface AuthorityDetailDao {
 
     /*
     type of status
-    w = wait 
-    s = suspend
+    waiting 
+    suspend
+    approved
      */
     //get petition form only
     public List<PetitionForm> getPetitionFormRequest(String status);
     
     //get change section form only
     public List<ChangeSectionForm> getChangeSectionForm(String status);
+    
+    //get petition form only according to user role
+    public List<PetitionForm> getPetitionFormsRequestForRole(String role, String status);
+    
+    //get change section form only according to user role
+    public List<ChangeSectionForm> getChangeSectionFormForRole(String role, String status);
 }
 //Stage
 //
