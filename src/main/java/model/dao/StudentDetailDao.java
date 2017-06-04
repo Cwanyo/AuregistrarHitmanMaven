@@ -20,13 +20,10 @@ public interface StudentDetailDao {
     public List<FormType> getListForm();
     
     /*
-    
     type of status
-    a = approve
-    w = wait 
-    s = suspend
-    * = all
-    
+    waiting 
+    suspend
+    approved
      */
     //get petition form only
     public List<PetitionForm> getPetitionFormRequest(String status,int studentId);

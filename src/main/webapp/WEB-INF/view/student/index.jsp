@@ -181,7 +181,7 @@
                                 <td>${p.getId().getSubmitTime()}</td>
                                 <td>
                                     <div class="progress progress-striped active" style="width: 100%;">
-                                        <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)+10}%;"></div>
+                                        <div class="progress-bar progress-bar-${p.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(p.getCurrentStage()*100)/3}%;"></div>
                                     </div>
                                 </td>
                                 <td><span class="label label-sm label-${p.getStatus()}">${p.getStatus()}</span></td>
@@ -203,6 +203,10 @@
                                 <textarea name="requestmessage" class="form-control" rows="5" readonly>${p.getRequestMessage()}</textarea>
                                 <h4>Request reason :-</h4>
                                 <textarea name="requestreason" class="form-control" rows="5" readonly>${p.getRequestReason()}</textarea>
+                                <h4>Advisor Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${p.getAdvisorApprovalSignature()}" readonly/>
+                                <h4>Dean Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${p.getDeanApprovalSignature()}" readonly/>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>
@@ -216,7 +220,7 @@
                             <td>${c.getId().getSubmitTime()}</td>
                             <td>
                                 <div class="progress progress-striped active" style="width: 100%;">
-                                    <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)+10}%;"></div>
+                                    <div class="progress-bar progress-bar-${c.getStatus()}" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: ${(c.getCurrentStage()*100)/2}%;"></div>
                                 </div>
                             </td>
                             <td><span class="label label-sm label-${c.getStatus()}">${c.getStatus()}</span></td>
@@ -235,6 +239,8 @@
                                 Section Number : ${c.getSectionNumber()}
                                 <h4>Request message :-</h4>
                                 <textarea name="requestmessage" class="form-control" rows="5" readonly>${c.getRequestMessage()}</textarea>
+                                <h4>Dean Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${c.getDeanApprovalSignature()}" readonly/>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>

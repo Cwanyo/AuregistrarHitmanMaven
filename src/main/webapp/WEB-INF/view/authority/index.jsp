@@ -99,7 +99,7 @@
             <!-- /.row -->
             <a style='color: black;font-size: 15px'>Authority petitions are filed for consideration of exception to a University policy. The Policies and Procedures for the Student
                 Petition have been established by Assumption University Office Of The University Registrar.<br></br></a>
-            <a style='color: black;font-size: 15px'>To select your petition request please click "Petition Forms" at the left menu bar.</a>
+            <a style='color: black;font-size: 15px'>To check student petition request please click "Student Request" at the left menu bar.</a>
 
         </c:if>
         <c:if test="${!empty task}">

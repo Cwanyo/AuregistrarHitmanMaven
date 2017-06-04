@@ -48,8 +48,9 @@ public class AuthorityDetailServlet extends HttpServlet {
             session.setAttribute("clist", null);
             session.setAttribute("task", null);
         } else if (userPath.equals("/authority/request")) {
-            List<PetitionForm> plist = new AuthorityDetailImpl().getPetitionFormRequest("waiting");
-            List<ChangeSectionForm> clist = new AuthorityDetailImpl().getChangeSectionForm("waiting");
+            List<PetitionForm> plist = new AuthorityDetailImpl().getPetitionFormsRequestForRole(authority.getRole(), "waiting");
+            List<ChangeSectionForm> clist = new AuthorityDetailImpl().getChangeSectionFormForRole(authority.getRole(), "waiting");
+            
             session.setAttribute("plist", plist);
             session.setAttribute("clist", clist);
             session.setAttribute("task", "task");
