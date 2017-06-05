@@ -30,9 +30,13 @@
                             <br>
                             <p>
                                 [Authority Account]<br>
+                                |Advisor|<br>
                                 id : auteacher1111111@gmail.com<br>
                                 pass : 1412auteacher<br>
-
+                                |Dean|<br>
+                                id : auteacher2222222@gmail.com<br>
+                                pass : 1412auteacher<br>
+                                
                                 [Student Account]<br>
                                 id : austudent1111111@gmail.com<br>
                                 pass : 1412austudent<br>
