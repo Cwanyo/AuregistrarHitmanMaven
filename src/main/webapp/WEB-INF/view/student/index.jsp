@@ -207,6 +207,23 @@
                                 <input class="form-control" type="text" name="" value="${p.getAdvisorApprovalSignature()}" readonly/>
                                 <h4>Dean Signature :</h4>
                                 <input class="form-control" type="text" name="" value="${p.getDeanApprovalSignature()}" readonly/>
+                                <br>
+                                <div class="stepwizard">
+                                    <div class="stepwizard-row">
+                                        <div class="stepwizard-step">
+                                            <button type="button" class="btn btn-<c:if test="${p.currentStage >= 0}">primary</c:if> btn-circle">1</button>
+                                            <p>Student</p>
+                                        </div>
+                                        <div class="stepwizard-step">
+                                            <button type="button" class="btn btn-<c:if test="${p.currentStage >= 1}">primary</c:if> btn-circle">2</button>
+                                            <p>Advisor</p>
+                                        </div>
+                                        <div class="stepwizard-step">
+                                           <button type="button" class="btn btn-<c:if test="${p.currentStage >= 2}">primary</c:if> btn-circle">3</button>
+                                            <p>Dean</p>
+                                        </div> 
+                                    </div>
+                                </div>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>
@@ -241,6 +258,19 @@
                                 <textarea name="requestmessage" class="form-control" rows="5" readonly>${c.getRequestMessage()}</textarea>
                                 <h4>Dean Signature :</h4>
                                 <input class="form-control" type="text" name="" value="${c.getDeanApprovalSignature()}" readonly/>
+                                <br>
+                                <div class="stepwizard">
+                                    <div class="stepwizard-row">
+                                        <div class="stepwizard-step">
+                                            <button type="button" class="btn btn-<c:if test="${c.currentStage >= 0}">primary</c:if> btn-circle">1</button>
+                                            <p>Student</p>
+                                        </div>
+                                        <div class="stepwizard-step">
+                                            <button type="button" class="btn btn-<c:if test="${c.currentStage >= 1}">primary</c:if> btn-circle">2</button>
+                                            <p>Dean</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>
