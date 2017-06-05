@@ -79,6 +79,14 @@
         <url-pattern>/Authority/index</url-pattern>
         <url-pattern>/Authority/request</url-pattern>
         <url-pattern>/authority/index</url-pattern>
+        <url-pattern>/Authority/papprove</url-pattern>
+        <url-pattern>/authority/papprove</url-pattern>
+        <url-pattern>/Authority/psuspend</url-pattern>
+        <url-pattern>/authority/psuspend</url-pattern>
+        <url-pattern>/Authority/capprove</url-pattern>
+        <url-pattern>/authority/capprove</url-pattern>
+        <url-pattern>/Authority/csuspend</url-pattern>
+        <url-pattern>/authority/csuspend</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

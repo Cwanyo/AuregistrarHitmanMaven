@@ -20,7 +20,7 @@ public interface AuthorityDetailDao {
     public List<FormType> getListForm();
 
     /*
-    type of status
+    type of status (status,type)
     waiting 
     suspend
     approved
@@ -36,6 +36,12 @@ public interface AuthorityDetailDao {
     
     //get change section form only according to user role
     public List<ChangeSectionForm> getChangeSectionFormForRole(String role, String status);
+    
+    //approve or suspend studen request for petition form
+    public boolean updatePetitionForm(int studentId,String date,String auSig,String role,String type);
+    
+    //approve or suspend studen request for petition form
+    public boolean updateChangeSectionForm(int studentId,String date,String auSig,String role,String type);
 }
 //Stage
 //

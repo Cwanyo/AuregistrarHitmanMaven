@@ -50,16 +50,32 @@ public class AuthorityDetailServlet extends HttpServlet {
         } else if (userPath.equals("/authority/request")) {
             List<PetitionForm> plist = new AuthorityDetailImpl().getPetitionFormsRequestForRole(authority.getRole(), "waiting");
             List<ChangeSectionForm> clist = new AuthorityDetailImpl().getChangeSectionFormForRole(authority.getRole(), "waiting");
-            
+
             session.setAttribute("plist", plist);
             session.setAttribute("clist", clist);
             session.setAttribute("task", "task");
-        }else if(userPath.equals("/authority/approve")) {
-            
-        }else if(userPath.equals("/authority/suspend")) {
-            
+        } else if (userPath.equals("/authority/papprove")) {
+            String studentId = request.getParameter("studentId");
+            String subDate = request.getParameter("subDate");
+            boolean status = new AuthorityDetailImpl().updatePetitionForm(Integer.parseInt(studentId), subDate, authority.getFirstName() + " " + authority.getLastName(), authority.getRole(), "approved");
+            System.out.println("update papprove : " + status);
+        } else if (userPath.equals("/authority/psuspend")) {
+            String studentId = request.getParameter("studentId");
+            String subDate = request.getParameter("subDate");
+            boolean status = new AuthorityDetailImpl().updatePetitionForm(Integer.parseInt(studentId), subDate, authority.getFirstName() + " " + authority.getLastName(), authority.getRole(), "suspend");
+            System.out.println("update psuspend : " + status);
+        } else if (userPath.equals("/authority/capprove")) {
+            String studentId = request.getParameter("studentId");
+            String subDate = request.getParameter("subDate");
+            boolean status = new AuthorityDetailImpl().updateChangeSectionForm(Integer.parseInt(studentId), subDate, authority.getFirstName() + " " + authority.getLastName(), authority.getRole(), "approved");
+            System.out.println("update capprove : " + status);
+        } else if (userPath.equals("/authority/csuspend")) {
+            String studentId = request.getParameter("studentId");
+            String subDate = request.getParameter("subDate");
+            boolean status = new AuthorityDetailImpl().updateChangeSectionForm(Integer.parseInt(studentId), subDate, authority.getFirstName() + " " + authority.getLastName(), authority.getRole(), "suspend");
+            System.out.println("update csuspend : " + status);
         }
-        
+
         try {
             System.out.println("redirected-------->");
             System.out.println(userPath);

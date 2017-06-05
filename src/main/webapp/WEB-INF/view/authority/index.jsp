@@ -121,7 +121,7 @@
                             <th> ID </th>
                             <th> Type </th>
                             <th> Status </th>
-                            <th> Signature </th>
+                            <!--<th> Signature </th>-->
                             <th> Approve </th>
                             <th> Suspend </th>
                         </tr>
@@ -134,9 +134,9 @@
                                 <td>${p.student.id}</td>
                                 <td>Petition</td>
                                 <td>${p.status}</td>
-                                <td><input type="text" class="form-control input-sm" name="signature" value="" /></td>
-                                <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve()"></td>
-                                <td><input type="button" value="Cancel" class="btn btn-block" onclick="suspend()"></td>
+                                <!--<td><input type="text" class="form-control input-sm" name="signature" value="" /></td>-->
+                                <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve('p',${p.id.studentId}, '${p.id.submitTime}')"></td>
+                                <td><input type="button" value="Confirm" class="btn btn-block" onclick="suspend('p',${p.id.studentId}, '${p.id.submitTime}')"></td>
                             </tr>
                         <span style="display: none;" id="desc${countRow}">
                             <div>
@@ -155,6 +155,10 @@
                                 <textarea name="requestmessage" class="form-control" rows="5" readonly>${p.getRequestMessage()}</textarea>
                                 <h4>Request reason :-</h4>
                                 <textarea name="requestreason" class="form-control" rows="5" readonly>${p.getRequestReason()}</textarea>
+                                <h4>Advisor Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${p.getAdvisorApprovalSignature()}" readonly/>
+                                <h4>Dean Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${p.getDeanApprovalSignature()}" readonly/>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>
@@ -167,9 +171,9 @@
                             <td>${c.student.id}</td>
                             <td>Change Section</td>
                             <td>${c.status}</td>
-                            <td><input type="text" class="form-control input-sm" name="signature" value="" /></td>
-                            <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve()"></td>
-                            <td><input type="button" value="Cancel" class="btn btn-block" onclick="suspend()"></td>
+                            <!--<td><input type="text" class="form-control input-sm" name="signature" value="" /></td>-->
+                            <td><input type="button" value="Confirm" class="btn btn-block" onclick="approve('c',${c.id.studentId}, '${c.id.submitTime}')"></td>
+                            <td><input type="button" value="Confirm" class="btn btn-block" onclick="suspend('c',${c.id.studentId}, '${c.id.submitTime}')"></td>
                         </tr>
                         <span style="display: none;" id="desc${countRow}">
                             <div>
@@ -185,6 +189,8 @@
                                 Section Number : ${c.getSectionNumber()}
                                 <h4>Request message :-</h4>
                                 <textarea name="requestmessage" class="form-control" rows="5" readonly>${c.getRequestMessage()}</textarea>
+                                <h4>Dean Signature :</h4>
+                                <input class="form-control" type="text" name="" value="${c.getDeanApprovalSignature()}" readonly/>
                             </div>
                         </span>
                         <c:set var = "countRow" value="${countRow+1}"/>
@@ -256,6 +262,56 @@
      $table.bootstrapTable('expandRow', $tr.data('index'));
      }
      });*/
+
+    function approve(type, studentid, date) {
+        if (type === 'p') {
+            console.log('papprove');
+            $.ajax({
+                url: '${pageContext.request.contextPath}/authority/papprove',
+                type: 'post',
+                data: {studentId: studentid, subDate: date},
+                success: function () {
+                    console.log("done");
+                }
+            });
+        } else if (type === 'c') {
+            console.log('capprove');
+            $.ajax({
+                url: '${pageContext.request.contextPath}/authority/capprove',
+                type: 'post',
+                data: {studentId: studentid, subDate: date},
+                success: function () {
+                    console.log("done");
+                }
+            });
+        }
+        location.reload();
+    }
+
+    function suspend(type, studentid, date) {
+        if (type === 'p') {
+            console.log('psuspend');
+            $.ajax({
+                url: '${pageContext.request.contextPath}/authority/psuspend',
+                type: 'post',
+                data: {studentId: studentid, subDate: date},
+                success: function () {
+                    console.log("done");
+                }
+            });
+        } else if (type === 'c') {
+            console.log('csuspend');
+            $.ajax({
+                url: '${pageContext.request.contextPath}/authority/csuspend',
+                type: 'post',
+                data: {studentId: studentid, subDate: date},
+                success: function () {
+                    console.log("done");
+                }
+            });
+        }
+        location.reload();
+    }
 </script>
 
 <!-- Metis Menu Plugin JavaScript -->
