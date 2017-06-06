@@ -1,0 +1,22 @@
+//sso for google signin
+Here is your client ID :
+1094634315533-ve4dc0af0jc2gti1opkm7tc60mvgukg9.apps.googleusercontent.com
+Here is your client secret :
+_KLYriV_0wa0LKzgONsdc76V
+
+//account for testing
+[Authority Account]
+|Advisor|
+id : auteacher1111111@gmail.com
+pass : 1412auteacher
+|Dean|
+id : auteacher2222222@gmail.com
+pass : 1412auteacher
+[Student Account]
+id : austudent1111111@gmail.com
+pass : 1412austudent
+
+//DB
+url : us-cdbr-iron-east-03.cleardb.net:3306/heroku_1e588fc995ef1f5
+username : b0a57b32357e7a
+password : 577adc85

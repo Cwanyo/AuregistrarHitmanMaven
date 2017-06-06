@@ -1,0 +1,1 @@
+db model in auregistrar are outofdate compare to the real db on the server
