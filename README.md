@@ -32,8 +32,8 @@ Database And Other Documents
 All the files are stored in the "DB and Presentation Slide" folder.
 Note that database model are out of date compare to the real database on the server.
 
-url : us-cdbr-iron-east-03.cleardb.net:3306/heroku_1e588fc995ef1f5
-username : b0a57b32357e7a
+url : us-cdbr-iron-east-03.cleardb.net:3306/heroku_1e588fc995ef1f5<br />
+username : b0a57b32357e7a<br />
 password : 577adc85
 
 Contributors
