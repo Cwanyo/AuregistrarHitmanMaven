@@ -41,7 +41,6 @@ Testing
 -------
 List of accounts in the system for testing phase.
 
-[Authority Account]
 |Advisor|
 username : auteacher1111111@gmail.com
 password : 1412auteacher
@@ -60,4 +59,4 @@ Team : HITMAN
 - Si Thu
 - Chawan V
 
-[Website](https://auregistrar.herokuapp.com/)
+Link to our [website](https://auregistrar.herokuapp.com/)
