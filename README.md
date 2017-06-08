@@ -60,4 +60,13 @@ Team : HITMAN
 - Si Thu
 - Chawan V
 
+<<<<<<< HEAD
 [Website](https://auregistrar.herokuapp.com/)
+=======
+# Objectives
+- Provide a flow system for registration.
+- Better document's communication between " Registrar and Student ".
+
+# Helpful Links
+- https://auregistrar.herokuapp.com/
+>>>>>>> 609785e0bb92b7b9ab6656e1a5bf5f25be044e72
