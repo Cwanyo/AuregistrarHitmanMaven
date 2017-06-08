@@ -32,24 +32,9 @@ Database And Other Documents
 All the files are stored in the "DB and Presentation Slide" folder.
 Note that database model are out of date compare to the real database on the server.
 
-|Database username and password|
 url : us-cdbr-iron-east-03.cleardb.net:3306/heroku_1e588fc995ef1f5
 username : b0a57b32357e7a
 password : 577adc85
-
-Testing
--------
-List of accounts in the system for testing phase.
-
-|Advisor|
-username : auteacher1111111@gmail.com
-password : 1412auteacher
-|Dean|
-username : auteacher2222222@gmail.com
-password : 1412auteacher
-|Student|
-username : austudent1111111@gmail.com
-password : 1412austudent
 
 Contributors
 ------------
