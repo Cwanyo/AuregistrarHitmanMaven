@@ -40,7 +40,7 @@ Contributors
 ------------
 Team : HITMAN
 - Pannachet L
-- Chachawan Y
+- Chatchawan Y
 - Si Thu
 - Chawan V
 
